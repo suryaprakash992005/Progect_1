@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>InterviewAI — AI-Powered Interview Coach</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <!-- Nav -->
+    <nav class="nav">
+      <a class="nav-logo" href="index.html">Interview<span>AI</span></a>
+      <span class="nav-badge">Beta</span>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero fade-up fade-up-1">
+      <div class="hero-eyebrow">AI-Powered Analysis</div>
+      <h1>Ace Your Next<br/><em>Interview</em></h1>
+      <p>Get real-time feedback on your confidence, emotion, voice clarity, and answer quality — powered by AI analysis.</p>
+
+      <!-- Feature cards -->
+      <div class="features fade-up fade-up-2">
+        <div class="feature-card">
+          <span class="feature-icon">🎯</span>
+          <h3>NLP Scoring</h3>
+          <p>Your answers scored on clarity, grammar, and relevance in real time.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">😊</span>
+          <h3>Emotion Tracking</h3>
+          <p>Face detection monitors your emotion throughout the session.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🎙️</span>
+          <h3>Voice Analysis</h3>
+          <p>Speech-to-text + clarity scoring from your microphone.</p>
+        </div>
+      </div>
+
+      <a href="interview.html" class="btn btn-primary fade-up fade-up-3">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5,3 19,12 5,21"/></svg>
+        Start Interview
+      </a>
+    </section>
+
+    <!-- How it works -->
+    <section style="padding: 48px 0; max-width: 600px; margin: 0 auto; text-align: center;" class="fade-up fade-up-4">
+      <h2 style="font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; margin-bottom: 32px; color: var(--gray-400); letter-spacing: -0.02em;">How it works</h2>
+      <div class="steps">
+        <div class="step done">
+          <div class="step-circle">1</div>
+          <span class="step-label">Setup</span>
+        </div>
+        <div class="step-line"></div>
+        <div class="step">
+          <div class="step-circle">2</div>
+          <span class="step-label">Interview</span>
+        </div>
+        <div class="step-line"></div>
+        <div class="step">
+          <div class="step-circle">3</div>
+          <span class="step-label">Analysis</span>
+        </div>
+        <div class="step-line"></div>
+        <div class="step">
+          <div class="step-circle">4</div>
+          <span class="step-label">Results</span>
+        </div>
+      </div>
+
+      <div class="setup-card fade-up fade-up-5">
+        <h2>Quick Setup</h2>
+        <p>Configure your interview session before we begin. Make sure your camera and microphone are connected.</p>
+
+        <div class="form-group">
+          <label>Interview Role</label>
+          <input type="text" id="role-input" placeholder="e.g. Software Engineer, Product Manager…" />
+        </div>
+
+        <div class="form-group">
+          <label>Difficulty Level</label>
+          <select id="difficulty-select">
+            <option value="easy">Entry Level</option>
+            <option value="medium" selected>Mid-Level</option>
+            <option value="hard">Senior / Advanced</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Number of Questions</label>
+          <select id="question-count">
+            <option value="3">3 Questions</option>
+            <option value="5" selected>5 Questions</option>
+            <option value="8">8 Questions</option>
+          </select>
+        </div>
+
+        <div class="alert" id="setup-alert">
+          ⚠️ Please fill in your target role before continuing.
+        </div>
+
+        <button class="btn btn-primary" style="width:100%;" onclick="startInterview()">
+          Begin Interview Session →
+        </button>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    function startInterview() {
+      const role = document.getElementById('role-input').value.trim();
+      const alert = document.getElementById('setup-alert');
+      if (!role) {
+        alert.classList.add('show');
+        return;
+      }
+      alert.classList.remove('show');
+      // Store config
+      const config = {
+        role,
+        difficulty: document.getElementById('difficulty-select').value,
+        questionCount: parseInt(document.getElementById('question-count').value)
+      };
+      sessionStorage.setItem('interviewConfig', JSON.stringify(config));
+      window.location.href = 'interview.html';
+    }
+  </script>
+</body>
+</html>
